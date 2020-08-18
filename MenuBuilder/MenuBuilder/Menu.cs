@@ -5,10 +5,10 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public class Menu<P,T> : Validations
+    public class Menu<P,T> : Validations<P>
     {
         public Dictionary<P, Option<T>> Dict { get; set; }
-        public Validations Vali { get; set; }
+        public Validations<P> Vali { get; set; }
         public Menu()
         {
             Dict = new Dictionary<P, Option<T>>();

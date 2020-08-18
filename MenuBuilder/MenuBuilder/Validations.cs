@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public abstract class Validations
+    public abstract class Validations<P>
     {
         public Validations() {}
 
@@ -15,6 +15,7 @@ namespace MenuBuilder
             try
             {
                 IsNull(a);
+                CheckType(a);
             }
             catch (Exception e)
             {
@@ -29,9 +30,11 @@ namespace MenuBuilder
                 throw new ArgumentNullException();
 
         }
-        public bool CheckType(object a, object b)
+        public void CheckType(object a)
         {
-            return a.GetType() == b.GetType();
+            if (!(typeof(P) == a.GetType()))
+                throw new TypeLoadException();
+
         }
 
     }
