@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public interface IAction<T>
+    public interface IValidNum<T>:IValidations<T>
     {
-        public void Run(params T[] param);
+        public bool IsValidNum(string input);
     }
 }

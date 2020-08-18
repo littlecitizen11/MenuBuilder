@@ -6,11 +6,11 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public abstract class Validations<P>
+    public class Validations<P> : IValidations<P>, IValidNum<P>
     {
         public Validations() {}
 
-        public void IsValid(object a)
+        public void IsValid(P a)
         {
             try
             {
@@ -24,18 +24,33 @@ namespace MenuBuilder
             }
         }
 
-        public void IsNull(object a)
+        public void IsNull(P a)
         {
             if (a is null)
                 throw new ArgumentNullException();
 
         }
-        public void CheckType(object a)
+        public void CheckType(P a)
         {
             if (!(typeof(P) == a.GetType()))
                 throw new TypeLoadException();
 
         }
 
+        public bool IsValidNum(string input)
+        {
+            int a;
+            try {
+                if (!int.TryParse(input, out a))
+                    throw new InvalidCastException();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("{0} Exception caught", e.Message);
+                return false;
+            }
+            return true;
+
+        }
     }
 }
