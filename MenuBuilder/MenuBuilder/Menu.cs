@@ -13,6 +13,15 @@ namespace MenuBuilder
         {
             Dict = new Dictionary<P, Option<T>>();
         }
+        public void AddOption(P key, string description, IAction<T> action)
+        {
+            Vali.IsValid(key);
+            if (IsKeyInDict(key))
+            {
+                return;
+            }
+            Dict.Add(key, new Option<T>(description, action));
+        }
         public Dictionary<P,Option<T>> GetDict()
         {
             return Dict;

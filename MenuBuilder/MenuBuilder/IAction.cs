@@ -4,7 +4,8 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    interface IAction
+    public interface IAction<T>
     {
+        public void Run(params T[] param);
     }
 }
