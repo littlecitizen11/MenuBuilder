@@ -13,7 +13,7 @@ namespace MenuBuilder_Example
         }
         public static void Check1()
         {
-            IMenuHandler<string> mh = new MenuHandler<string>();
+            IMenuRunHandler<string> mh = new MenuRunHandler<string>();
             Action a = new Action(Check2);
             mh.RunMenu = new RunStringMenu();
             mh.RunMenu.Menu.AddOption("This is a key", "Check2", a);
@@ -21,7 +21,7 @@ namespace MenuBuilder_Example
         }
         static void Main(string[] args)
         {
-            IMenuHandler<int> mh = new MenuHandler<int>();
+            IMenuRunHandler<int> mh = new MenuRunHandler<int>();
             Action a = new Action(Check1);
             mh.RunMenu = new RunIntMenu();
             mh.RunMenu.Menu.AddOption(1, "Check1", a);
