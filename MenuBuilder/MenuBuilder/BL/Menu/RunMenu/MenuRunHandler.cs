@@ -6,12 +6,11 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public class MenuHandler:IMenuHandler
+    public class MenuRunHandler<T>: IMenuRunHandler<T>
     {
-        public RunIntMenu RunIntMenu { get; set; }
-        public RunStringMenu RunStringMenu { get; set; }
+        public IRunMenu<T> RunMenu { get; set; }
 
-        public MenuHandler()
+        public MenuRunHandler()
         {
 
         }

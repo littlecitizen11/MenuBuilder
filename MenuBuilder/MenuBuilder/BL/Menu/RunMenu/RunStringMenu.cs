@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public class RunStringMenu
+    public class RunStringMenu : IRunMenu<string>
     {
 
         public Menu<string> Menu { get; set; }
@@ -15,21 +15,21 @@ namespace MenuBuilder
             Validator = new Validations<string>();
         }
 
-        public void RunMenu()
+        public void Run()
         {
-            string str = "o";
-            Console.WriteLine("Click o to exit");
-                        while (str != "close")
+            string input =null;
+            Console.WriteLine("Click close to exit");
+            while (input != "close")
             {
                 foreach (var item in Menu.Dict)
                 {
                     Console.WriteLine("{" + item.Key + "} Value : " + item.Value.Description);
 
                 }
-                string input = Console.ReadLine();
-                Validator.IsValid(input);
-                Menu.SelectOption(str);
-                 str = "o";
+                input = Console.ReadLine();
+                if(Validator.IsValid(input))
+                    Menu.SelectOption(input);
+                else input = null;
             }
         }
     }

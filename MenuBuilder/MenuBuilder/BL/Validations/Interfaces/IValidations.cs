@@ -8,9 +8,10 @@ namespace MenuBuilder
 {
     public interface IValidations<P>
     {
-        public void IsValid(P a);
+        public bool IsValid(P a);
         public void IsNull(P a);
         public void CheckType(P a);
+        public bool IsValidNum(string input);
 
     }
 }

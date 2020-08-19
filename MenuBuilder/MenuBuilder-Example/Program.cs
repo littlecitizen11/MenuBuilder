@@ -13,19 +13,19 @@ namespace MenuBuilder_Example
         }
         public static void Check1()
         {
-            IMenuHandler mh = new MenuHandler();
+            IMenuHandler<string> mh = new MenuHandler<string>();
             Action a = new Action(Check2);
-            mh.RunIntMenu = new RunIntMenu();
-            mh.RunIntMenu.Menu.AddOption(1, "Check2", a);
-            mh.RunIntMenu.RunMenu();
+            mh.RunMenu = new RunStringMenu();
+            mh.RunMenu.Menu.AddOption("This is a key", "Check2", a);
+            mh.RunMenu.Run();
         }
         static void Main(string[] args)
         {
-            IMenuHandler mh = new MenuHandler();
+            IMenuHandler<int> mh = new MenuHandler<int>();
             Action a = new Action(Check1);
-            mh.RunIntMenu = new RunIntMenu();
-            mh.RunIntMenu.Menu.AddOption(1, "Fuck", a);
-            mh.RunIntMenu.RunMenu();
+            mh.RunMenu = new RunIntMenu();
+            mh.RunMenu.Menu.AddOption(1, "Check1", a);
+            mh.RunMenu.Run();
             
 
         }

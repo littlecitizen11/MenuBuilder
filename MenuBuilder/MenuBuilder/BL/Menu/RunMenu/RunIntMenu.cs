@@ -4,18 +4,20 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public class RunIntMenu
+    public class RunIntMenu : IRunMenu<int>
     {
 
         public Menu<int> Menu { get; set; }
-        public IValidNum<int> Validator { get; set; }
+        public IValidations<int> Validator { get; set; }
+
         public RunIntMenu()
         {
             Menu = new Menu<int>();
             Validator = new Validations<int>();
+            
         }
 
-        public void RunMenu()
+        public void Run()
         {
             int num = -1;
             Console.WriteLine("Click 0 to exit");

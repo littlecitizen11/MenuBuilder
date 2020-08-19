@@ -6,11 +6,11 @@ using System.Text;
 
 namespace MenuBuilder
 {
-    public class Validations<P> : IValidations<P>, IValidNum<P>
+    public class Validations<P> : IValidations<P>,IValidNum<P>
     {
         public Validations() {}
 
-        public void IsValid(P a)
+        public bool IsValid(P a)
         {
             try
             {
@@ -21,7 +21,9 @@ namespace MenuBuilder
             {
 
                 Console.WriteLine("{0} Exception caught",e.Message);
+                return false;
             }
+            return true;
         }
 
         public void IsNull(P a)

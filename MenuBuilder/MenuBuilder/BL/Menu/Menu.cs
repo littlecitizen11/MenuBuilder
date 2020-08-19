@@ -8,7 +8,7 @@ namespace MenuBuilder
     public class Menu<P>
     {
         public Dictionary<P, Option> Dict { get; set; }
-        public Validations<P> Vali { get; set; }
+        public IValidations<P> Vali { get; set; }
         public Menu()
         {
             Vali = new Validations<P>();
@@ -17,8 +17,7 @@ namespace MenuBuilder
         }
         public void AddOption(P key, string description, Action action)
         {
-            Vali.IsValid(key);
-            if (IsKeyInDict(key))
+            if (IsKeyInDict(key)&&!Vali.IsValid(key))
             {
                 return;
             }
@@ -30,7 +29,6 @@ namespace MenuBuilder
         }
         public bool IsKeyInDict(P key)
         {
-            Vali.IsValid(key);
             try
             {
                 if (!((Dict.Select(x=>x).Where(x=>x.Key.Equals(key)).Count())>0)&&(Dict.Count>0)) throw new KeyNotFoundException();
@@ -40,20 +38,18 @@ namespace MenuBuilder
                 Console.WriteLine("{0} Exception caugt",e.Message);
                 return false;
             }
-            return Dict.ContainsKey(key);
+            return true;
         }
         public Option GetDictByKey(P key)
         {
-                if (IsKeyInDict(key))
+                if (IsKeyInDict(key) && Vali.IsValid(key))
                 {
                     return Dict[key];
-;
                 }
             return null;
         }
         public void SelectOption(P key)
-        {
-            
+        {   
             var dict = GetDictByKey(key);
             if (!(dict is null))
             {
